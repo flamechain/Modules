@@ -1,4 +1,6 @@
-# LoadingBar Documentation
+# LoadingBar Documentation (Part 2)
+
+# NOTE: WORK IN PROGRESS
 
 Version: 1.1.6
 
@@ -10,6 +12,8 @@ ___
 
 | Title |
 |-|
+| [Threading](#Threading) |
+||
 | [Main Documentation](https://github.com/flamechain/Modules.git) |
 
 ___
