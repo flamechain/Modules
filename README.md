@@ -21,6 +21,8 @@ ___
 | [New Changes](#New-Changes) |
 | [Using this Module](#Using) |
 | [Version Log](#Version-Log) |
+||
+| [More Documentation](https://github.com/flamechain/Modules.git)|
 |
 
 ___
@@ -66,7 +68,7 @@ Then locate the current python version, is this case, 3.9.
 \Python39\Lib
 ```
 
-This folder contains all built-in modules, so just paste the [loadingbar.py](#https://github.com/flamechain/Modules.git) file into there.
+This folder contains all built-in modules, so just paste the [loadingbar.py](https://github.com/flamechain/Modules.git) file into there.
 
 > Full Path: .\\%appdata%\\..\Local\Programs\Python\Python39\Lib\
 
