@@ -12,13 +12,13 @@ ___
 |-|
 | [Advanced Features](#Advanced-Features) |
 | [All Features](#All-Features) |
-| [Bug Log](#Bug-Log) |
+| [Bar() Class](#loadingbar.Bar()) |
 | [Conclusion](#Conclusion) |
 | [Future Features](#Future-Features) |
 | [Future Updates](#Future-Updates) |
-| [Bar() Class](#loadingbar.Bar()) |
-| [SimulateTasks() Class](#loadingbar.SimulateTasks()) |
+| [Known Issues](#Known-Issues) |
 | [New Changes](#New-Changes) |
+| [SimulateTasks() Class](#loadingbar.SimulateTasks()) |
 | [Using this Module](#Using) |
 | [Version Log](#Version-Log) |
 ||
@@ -395,7 +395,7 @@ Pre-Release Version
 
 ___
 
-## Bug Log
+## Known Issues
 
 > Note: This bug log only contains bugs going back to version 1.1.6
 
