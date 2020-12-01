@@ -1,6 +1,4 @@
-# LoadingBar Documentation (Part 2)
-
-# NOTE: WORK IN PROGRESS
+# 2 LoadingBar Documentation
 
 Version: 1.1.6
 
@@ -8,27 +6,32 @@ Description: Extra documentation with larger and more specific examples.
 
 ___
 
-## Contents
+## 2.1 Contents
 
 | Title |
 |-|
-| [End() Method](#end())
-| [Generating Tasks](#Generating-Tasks) |
-| [Other](#Other) |
-| [Start() Method](#start()) |
-| [Threading](#Threading) |
+| [1.0 Main Documentation](https://github.com/flamechain/Modules.git) |
 ||
-| [Main Documentation](https://github.com/flamechain/Modules.git) |
+| [2.0 Secondary Documentation](#2-Secondary-Documentation)
+| [2.1 Table of Contents](#2.1-Contents)
+| [2.2 Threading](#2.2-Threading) |
+| [2.2.1 threading.Thread](#2.2.1-threading.Thread)
+| [2.2.2 concurrent.futures](#2.2.2-concurrent.futures)
+| [2.3 Generating Tasks](#2.3-Generating-Tasks) |
+| [2.4 Other](#2.4-Other) |
+| [2.5 Start() Method](#2.5-start()) |
+| [2.6 End() Method](#2.6-end())
+| [2.7 Conclusion](#2.7-Conclusion) |
 
 ___
 
-## Threading
+## 2.2 Threading
 
 This section will mainly just go over how the SimulateTasks() class worked. You can always look at the code yourself [here](https://github.com/flamechain/Modules.git).
 
 > Note: The SimulateTasks() class is an example class without strict formatting, so it may be more difficult to read.
 
-### threading.Thread
+### 2.2.1 threading.Thread
 
 In the SimulateTasks() class it uses the threading and concurrent modules. This section will go over just where it used the threading module to make it apear like its estimating eta without know how long the tasks will take.
 
@@ -80,7 +83,7 @@ for i in range(len(tasks)):
 
 What this does is it creates a loop that will go through every fake task (sleeping). It will start the progress bar, and reset it to the task finished percent when the task is done. After 1 or 2 tasks the progress bar does the math to find the overall average, and sets a good pace. In addition, if the progress bar ever gets to 100% before the tasks are finished, it resets to an average of 83%
 
-### concurrent.futures
+### 2.2.2 concurrent.futures
 
 This is used only in 1 area as well to simply get a return value from a function, where the threading module has no easy way to do that. This is just to run a 'loading tasks' popup while the tasks are being generated. Most of the delay is artifical.
 
@@ -98,7 +101,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 This uses the same technique to have the function stop itself. Next we will look at the function that actaully makes the random tasks.
 
-## Generating Tasks
+## 2.3 Generating Tasks
 
 This will show code examples on how the tasks were generated and why they were generated that way.
 
@@ -177,7 +180,7 @@ for i in range(len(tasks)):
 return tasks
 ```
 
-## Other
+## 2.4 Other
 
 The only other thing in the SimulateTasks() class that wasn't included was the print statements. It starts by using the [start()](#start()) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#start()).
 
@@ -205,7 +208,7 @@ Finshed
         |████████████████████| 100%  [tasks=5/5]
 ```
 
-## start()
+## 2.5 start()
 
 This start method is very simple, and is coded like this:
 
@@ -231,7 +234,7 @@ def start(self, stop=False):
 
 Notice that this requires to be stopped by an outside peice of code, so this is not a one-off method that you can just run, un-like [end()](#end()).
 
-## end()
+## 2.6 end()
 
 This method is literally just a print statement to finished off the progress bar. The title isn't built in, so it would most likely be used like this:
 
@@ -260,3 +263,11 @@ def end(self, tasks=None):
 ```
 
 > Note: All code examples don't have comments to save space. The real code is also formatted a little different. I think I've given you the github link enough. But [here](https://github.com/flamechain/Modules.git).
+
+## 2.7. Conclusion
+
+More sections will be made once new methods or classes get added. You can view future updates on the Main Documentation file on my github.
+
+___
+
+<sub>Documentation Version 1.3 - Module Version 1.1.6 - Release 1.1 - Status = Public</sub>
