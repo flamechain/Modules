@@ -23,7 +23,6 @@ ___
 | [Version Log](#Version-Log) |
 ||
 | [More Documentation](https://github.com/flamechain/Modules.git)|
-|
 
 ___
 
@@ -88,7 +87,6 @@ ___
 | arrow | Used for the front character of the bar. Often '>' is used. | True | '█'
 | percChar | Used for showing what unit the total is shown in. | True | '%'
 | bracketChars | List with 2 indices, the front and last character of the bar. Often '[' and ']' is used. | True | ['&#124;', '&#124;']
-|
 
 ### Description
 
@@ -301,7 +299,6 @@ ___
 | eta | Changes overall delay on the visual. Not exact, only average. Based on seconds | True | 15
 | total | .Where you put the total percent or other unit that the loading bar reaches at the end. | True | 100
 | barLength | The length, in characters, that the bar progress bar expands. This only includes the moving part of the bar. | True | 20
-|
 
 All parameters have been explained above in the [Bar()](#loadingbar.Bar()) parameters section. These values go directly into that class.
 
@@ -347,7 +344,6 @@ This is a parameter to the progress method. All of progress's methods will we li
 | time_ | How long has elapsed since the start of the bar. Used for eta. | True | None |
 | tasksDone | How many tasks are complete. Used for visualization | True | 0 |
 | pastBar | Used for dynamic animation. | True | None |
-|
 
 pastBar is at the bottom because its hardest to use. Basically progress will return a value if this is not None, and then you put that value back into progress.
 
@@ -382,7 +378,6 @@ ___
 | 1.0.2 | Various bug fixes | 11/29/20 |
 | 1.0.1 | Converted [SimulateTasks()](#loadingbar.SimulateTasks()) to class form | 11/28/20 |
 | 1.0.0 | Inital Release | 11/27/20 |
-|
 
 Pre-Release Version
 
@@ -397,7 +392,6 @@ Pre-Release Version
 | alpha | 1.2 | Eta calculator | 11/25/20 |
 | alpha | 1.1 | Class form | 11/25/20 |
 | alpha | 1.0 | First version, only progress method as single function | 11/24/20 |
-|
 
 ___
 
@@ -408,7 +402,6 @@ ___
 | Version | Bug ID | Description | Status | Fix Date |
 |-|-|-|:-:|:-:|
 | 1.1.6 | 001 | time_ param in progress() method froze program if over 100 | Fixed | 12/01/20 |
-|
 
 ___
 
@@ -422,6 +415,5 @@ ___
 | 1.4.0 | More features including multi-bar version, and different types of progress indicators. | 01/10/21 |
 | 1.3.0 | Compatibility with non-terminal formats. | 12/20/20 |
 | 1.2.0 | Ability to change bar format, pre-sets, and more than 1 example class. | 12/10/20 |
-|
 
 <sub>Documentation Version 1.0 - Module Version 1.1.6 - Release 1.0 - Status = Public</sub>
