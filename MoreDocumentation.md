@@ -12,6 +12,10 @@ ___
 
 | Title |
 |-|
+| [End() Method](#end())
+| [Generating Tasks](#Generating-Tasks) |
+| [Other](#Other) |
+| [Start() Method](#start()) |
 | [Threading](#Threading) |
 ||
 | [Main Documentation](https://github.com/flamechain/Modules.git) |
@@ -94,6 +98,165 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 This uses the same technique to have the function stop itself. Next we will look at the function that actaully makes the random tasks.
 
-## Random Tasks
+## Generating Tasks
 
 This will show code examples on how the tasks were generated and why they were generated that way.
+
+> Note: This is all part of the SimulateTasks() example class to show whats possible with this module, and to prove that this module can be used in real world application.
+
+Heres a list in order of what the the method loadtasks() is doing.
+
+1. Chooses how many tasks there should be, anywhere between 2 and 5
+1. Creates those tasks that take up a random percent of the total, anywhere bewteen 20 and 60 percent
+1. Loops through and slowly ticks down each task after all are created to make sure they sum up to 100
+1. Appends each percent that each task takes to a list, and returns that list.
+
+This is why the code example above has:
+
+```python
+future = executor.submit(loadtasks)
+tasks = future.result()
+```
+
+Now lets go over each step and how its implemented.
+
+- Choose how many tasks there should be
+
+```python
+ntasks = random.randint(2, 5)
+```
+
+- Creates those tasks that take up a random percent of the total
+
+```python
+totalperc = self.total
+
+for i in range(ntasks):
+    if ntasks == 1:
+        j = 100
+    else:
+        j = random.randint(2, 6) * 10
+        j *= (random.randint(95, 105) / 100)
+
+    totalperc -= j
+```
+
+- Loops through and slowly ticks down each tasks after all are created to make sure they sum up to 100
+
+This part also rounds each percent to an integer, because the progress bar doesn't support floats (yet).
+
+```python
+while totalperc < 0:
+    j -= 1
+    totalperc += 1
+    for ii in range(len(tasks)):
+        if tasks[ii] < 5:
+            continue
+        else:
+            tasks[ii] = tasks[ii] - 1
+            totalperc += 1
+
+if i == ntasks-1:
+    if totalperc != 0:
+        tasks[-1] += totalperc
+
+j = round(j, 1)
+tasks.append(j)
+```
+
+- Appends each percent that each task takes to a list, and returns that list
+
+This part in the code also has some artifical delay to make the 'loading tasks' indicator show up for more than 0.001 seconds. This is not required so its not shown in this example.
+
+```python
+tasks = []
+
+for i in range(len(tasks)):
+    tasks[i] = round(tasks[i], 1)
+
+return tasks
+```
+
+## Other
+
+The only other thing in the SimulateTasks() class that wasn't included was the print statements. It starts by using the [start()](#start()) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#start()).
+
+```txt
+Loading Tasks /
+```
+
+Then then program runs this line of code:
+
+```python
+print('Running Tasks...')
+```
+
+Its important to note that the end='\n' in this case. This means the loading bar won't delete this text, and the entire bar will just start on the second line, looking like this:
+
+```txt
+Running Tasks...
+        |███████████████     |  79%  [eta=00:07.07] [tasks=4/5]
+```
+
+The end just calls the [end()](#end()) method, which as explained in the main documentation, is just a progress bar with all values maxed out.
+
+```txt
+Finshed
+        |████████████████████| 100%  [tasks=5/5]
+```
+
+## start()
+
+This start method is very simple, and is coded like this:
+
+> Note: Again, if you want the full code go to my github page [here](https://github.com/flamechain/Modules.git).
+
+```python
+def start(self, stop=False):
+    percsyms = ['|', '/', '-', '\\']
+
+    j = 0
+    while True:
+        if stop():
+            break
+
+        print('Loading Tasks %s' % percsyms[j], end='\r')
+
+        j += 1
+        if j == 4:
+            j = 1
+
+        time.sleep(0.2)
+```
+
+Notice that this requires to be stopped by an outside peice of code, so this is not a one-off method that you can just run, un-like [end()](#end()).
+
+## end()
+
+This method is literally just a print statement to finished off the progress bar. The title isn't built in, so it would most likely be used like this:
+
+```python
+print("Finished")
+lb.end()
+```
+
+The code for this method is here:
+
+```python
+def end(self, tasks=None):
+        bar  = self.barChar * self.barLength
+
+        if tasks == None:
+            total_tasks = self.totalTasks
+        else:
+            total_tasks = tasks
+
+        if total_tasks == None:
+            print(f'\t{self.bracketChars[0]}
+            {bar}{self.bracketChars[1]} 100{self.percChar}')
+        else:
+            print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}
+            100{self.percChar}  [tasks={total_tasks}/{total_tasks}]')
+```
+
+> Note: All code examples don't have comments to save space. The real code is also formatted a little different. I think I've given you the github link enough. But [here](https://github.com/flamechain/Modules.git).
