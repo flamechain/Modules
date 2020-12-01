@@ -8,7 +8,7 @@ ___
 
 ## 1.1 Contents
 
-| Title | Title |
+| Title ||
 |-|-|
 | [1 LoadingBar Documentation](#1-loadingbar-documentation) | [1.6.8 arrow](#168-arrow) |
 | [1.1 Contents](#11-contents) | [1.6.9 percChar](#169-percchar) |
