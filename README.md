@@ -422,4 +422,4 @@ ___
 | 1.2.0 | Ability to change bar format, pre-sets, and more than 1 example class. | 12/10/20 |
 |
 
-<sub>Documentation Version 1.0 - Module Version 1.1.6 - Release 1.0 - Status = Private</sub>
+<sub>Documentation Version 1.0 - Module Version 1.1.6 - Release 1.0 - Status = Public</sub>
