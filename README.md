@@ -1,6 +1,6 @@
 # LoadingBar Documentation
 
-Version: 1.1.5
+Version: 1.1.6
 
 Description: A module to make easy progress bars with built-in examples
 
