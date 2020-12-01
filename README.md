@@ -1,6 +1,6 @@
 # 1 LoadingBar Documentation
 
-Version: 1.1.6
+Version: 1.1.7
 
 Description: A module to make easy progress bars with built-in examples
 
@@ -8,24 +8,23 @@ ___
 
 ## 1.1 Contents
 
-| Title ||
-|-|-|
-| [1 LoadingBar Documentation](#1-loadingbar-documentation) | [1.6.8 arrow](#168-arrow) |
-| [1.1 Contents](#11-contents) | [1.6.9 percChar](#169-percchar) |
-| [1.2 New Changes](#12-new-changes) | [1.6.10 bracketChars](#1610-bracketchars) |
-| [1.2.1 Features](#121-features) | [1.7 Using](#17-using) |
-| [1.2.2 Bugs](#122-bugs) | [1.7.1 progress()](#171-progress) |
-| [1.3 All Features](#13-all-features) | [1.7.2 start()](#172-start) |
-| [1.4 Future Features](#14-future-features) | [1.7.3 end()](#173-end) |
-| [1.5 Installation](#15-installation) | [1.8 loadingbar.SimulateTasks()](#18-loadingbarsimulatetasks) |
-| [1.6 loadingbar.Bar()](#16-loadingbarbar) | [1.8.1 Parameters (SimulateTasks)](#181-parameters-simulatetasks) |
-| [1.6.1 Parameters](#161-parameters) | [1.8.2 Example](#182-example) |
-| [1.6.2 Description](#162-description) | [1.9 Conclusion](#19-conclusion) |
-| [1.6.3 total](#163-total) | [1.10 Advanced Features](#110-advanced-features) |
-| [1.6.4 barLength](#164-barlength) | [1.10.1 pastBar](#1101-pastbar) |
-| [1.6.5 eta](#165-eta) | [1.11 Version Log](#111-version-log) |
-| [1.6.6 totalTasks](#166-totaltasks) | [1.12 Known Issues](#112-known-issues) |
-| [1.6.7 barChar](#167-barchar) | [1.13 Future Big Updates](#113-future-big-updates) |
+| Title |
+|-|
+| [1 LoadingBar Documentation](#1-loadingbar-documentation) |
+| [1.1 Contents](#11-contents) |
+| [1.2 New Changes](#12-new-changes) |
+| [1.3 All Features](#13-all-features) |
+| [1.4 Future Features](#14-future-features) |
+| [1.5 Installation](#15-installation) |
+| [1.6 loadingbar.Bar()](#16-loadingbarbar) |
+| [1.7 Using](#17-using) |
+| [1.8 loadingbar.SimulateTasks()](#18-loadingbarsimulatetasks) |
+| [1.9 Conclusion](#19-conclusion) |
+| [1.10 Advanced Features](#110-advanced-features) |
+| [1.11 All Contents](#111-all-contents)
+| [1.12 Version Log](#112-version-log) |
+| [1.13 Known Issues](#113-known-issues) |
+| [1.14 Future Big Updates](#114-future-big-updates) |
 ||
 | [2.0 Secondary Documentation](https://github.com/flamechain/Modules.git)|
 
@@ -92,6 +91,7 @@ ___
 | arrow | Used for the front character of the bar. Often '>' is used. | True | '█'
 | percChar | Used for showing what unit the total is shown in. | True | '%'
 | bracketChars | List with 2 indices, the front and last character of the bar. Often '[' and ']' is used. | True | ['&#124;', '&#124;']
+| title | What the title is for the progress bar while running. | True | 'Running Tasks...' |
 
 ### 1.6.2 Description
 
@@ -227,7 +227,8 @@ for i in range(11):
 In this example, every iteration the bar's completion goes up by 10%, and 1 task finishes. Here is the result of the bar after completion.
 
 ```txt
-|████████████████████| 100%  [tasks=10/10]
+Finished
+        |████████████████████| 100%  [tasks=10/10]
 ```
 
 To use the eta, just specify how long its been since starting. The eta gets automatically calculated from there.
@@ -290,7 +291,8 @@ lb.end()
 ```
 
 ```txt
-|████████████████████| 100%  [tasks=5/5]
+Finished
+        |████████████████████| 100%  [tasks=5/5]
 ```
 
 ___
@@ -369,10 +371,52 @@ Each second it will jump up by 50 percent, but the bar will update each characte
 
 ___
 
-## 1.11 Version Log
+## 1.11 All Contents
+
+| Title |
+|-|
+| [1 LoadingBar Documentation](#1-loadingbar-documentation) |
+| [1.1 Contents](#11-contents) |
+| [1.2 New Changes](#12-new-changes) |
+| [1.2.1 Features](#121-features) |
+| [1.2.2 Bugs](#122-bugs) |
+| [1.3 All Features](#13-all-features) |
+| [1.4 Future Features](#14-future-features) |
+| [1.5 Installation](#15-installation) |
+| [1.6 loadingbar.Bar()](#16-loadingbarbar) |
+| [1.6.1 Parameters](#161-parameters) |
+| [1.6.2 Description](#162-description) |
+| [1.6.3 total](#163-total) |
+| [1.6.4 barLength](#164-barlength) |
+| [1.6.5 eta](#165-eta) |
+| [1.6.6 totalTasks](#166-totaltasks) |
+| [1.6.7 barChar](#167-barchar) |
+| [1.6.8 arrow](#168-arrow) |
+| [1.6.9 percChar](#169-percchar) |
+| [1.6.10 bracketChars](#1610-bracketchars) |
+| [1.7 Using](#17-using) |
+| [1.7.1 progress()](#171-progress) |
+| [1.7.2 start()](#172-start) |
+| [1.7.3 end()](#173-end) |
+| [1.8 loadingbar.SimulateTasks()](#18-loadingbarsimulatetasks) |
+| [1.8.1 Parameters (SimulateTasks)](#181-parameters-simulatetasks) |
+| [1.8.2 Example](#182-example) |
+| [1.9 Conclusion](#19-conclusion) |
+| [1.10 Advanced Features](#110-advanced-features) |
+| [1.10.1 pastBar](#1101-pastbar) |
+| [1.11 All Contents](#111-all-contents)
+| [1.12 Version Log](#112-version-log) |
+| [1.13 Known Issues](#113-known-issues) |
+| [1.14 Future Big Updates](#114-future-big-updates) |
+||
+| [2.0 Secondary Documentation](https://github.com/flamechain/Modules.git)|
+___
+
+## 1.12 Version Log
 
 | Version | New Changes | Release Date |
 |-|-|:-:|
+| 1.1.7 | [SimulateTasks()](#loadingbar.SimulateTasks()) no longer has nested functions, and doesn't have its own redundent start() method. Also added title param to all methods so printing the title is built in. | 12/01/20 |
 | 1.1.6 | Added [bug log](#Bug-log) and fixed [bugs](#Bug-Log) | 12/01/20 |
 | 1.1.5 | Various bug fixes, added [version log](#Version-Log) | 12/01/20 |
 | 1.1.4 | Various bug fixes | 12/01/20 |
@@ -400,7 +444,7 @@ Pre-Release Version
 
 ___
 
-## 1.12 Known Issues
+## 1.13 Known Issues
 
 > Note: This bug log only contains bugs going back to version 1.1.6
 
@@ -410,7 +454,7 @@ ___
 
 ___
 
-## 1.13 Future Big Updates
+## 1.14 Future Big Updates
 
 > Note: These release dates aren't offical and are only estimations
 
@@ -421,4 +465,4 @@ ___
 | 1.3.0 | Compatibility with non-terminal formats. | 12/20/20 |
 | 1.2.0 | Ability to change bar format, pre-sets, and more than 1 example class. | 12/10/20 |
 
-<sub>Documentation Version 1.3 - Module Version 1.1.6 - Release 1.1 - Status = Public</sub>
+<sub>Documentation Version 1.5 - Module Version 1.1.7 - Release 1.2 - Status = Public</sub>

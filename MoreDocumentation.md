@@ -1,6 +1,6 @@
 # 2 LoadingBar Documentation
 
-Version: 1.1.6
+Version: 1.1.7
 
 Description: Extra documentation with larger and more specific examples.
 
@@ -12,16 +12,15 @@ ___
 |-|
 | [1.0 Main Documentation](https://github.com/flamechain/Modules.git) |
 ||
-| [2.0 Secondary Documentation](#2-Secondary-Documentation)
-| [2.1 Table of Contents](#2.1-Contents)
-| [2.2 Threading](#2.2-Threading) |
-| [2.2.1 threading.Thread](#2.2.1-threading.Thread)
-| [2.2.2 concurrent.futures](#2.2.2-concurrent.futures)
-| [2.3 Generating Tasks](#2.3-Generating-Tasks) |
-| [2.4 Other](#2.4-Other) |
-| [2.5 Start() Method](#2.5-start()) |
-| [2.6 End() Method](#2.6-end())
-| [2.7 Conclusion](#2.7-Conclusion) |
+| [2.0 Secondary Documentation](#2-secondary-documentation)
+| [2.1 Table of Contents](#21-contents)
+| [2.2 Threading](#22-threading) |
+| [2.3 Generating Tasks](#23-generating-tasks) |
+| [2.4 Other](#24-other) |
+| [2.5 Start() Method](#25-start()) |
+| [2.6 End() Method](#26-end())
+| [2.7 Conclusion](#27-Conclusion) |
+| [2.8 All Contents](#28-all-contents) |
 
 ___
 
@@ -188,14 +187,6 @@ The only other thing in the SimulateTasks() class that wasn't included was the p
 Loading Tasks /
 ```
 
-Then then program runs this line of code:
-
-```python
-print('Running Tasks...')
-```
-
-Its important to note that the end='\n' in this case. This means the loading bar won't delete this text, and the entire bar will just start on the second line, looking like this:
-
 ```txt
 Running Tasks...
         |███████████████     |  79%  [eta=00:07.07] [tasks=4/5]
@@ -215,7 +206,7 @@ This start method is very simple, and is coded like this:
 > Note: Again, if you want the full code go to my github page [here](https://github.com/flamechain/Modules.git).
 
 ```python
-def start(self, stop=False):
+def start(self, stop=False, title='Loading Tasks'):
     percsyms = ['|', '/', '-', '\\']
 
     j = 0
@@ -223,36 +214,39 @@ def start(self, stop=False):
         if stop():
             break
 
-        print('Loading Tasks %s' % percsyms[j], end='\r')
+        print('%s %s' % (title, percsyms[j]), end='\r')
 
         j += 1
         if j == 4:
             j = 1
 
         time.sleep(0.2)
+
+    print(self.title)
 ```
 
 Notice that this requires to be stopped by an outside peice of code, so this is not a one-off method that you can just run, un-like [end()](#end()).
 
 ## 2.6 end()
 
-This method is literally just a print statement to finished off the progress bar. The title isn't built in, so it would most likely be used like this:
+This method is simply called like this:
 
 ```python
-print("Finished")
 lb.end()
 ```
 
 The code for this method is here:
 
 ```python
-def end(self, tasks=None):
+def end(self, tasks=None, title='Finished'):
         bar  = self.barChar * self.barLength
 
         if tasks == None:
             total_tasks = self.totalTasks
         else:
             total_tasks = tasks
+
+        print(f"\033[F{title}\t\t\t\t\t\t\t\t\t") # tabs are here just for security
 
         if total_tasks == None:
             print(f'\t{self.bracketChars[0]}
@@ -264,10 +258,30 @@ def end(self, tasks=None):
 
 > Note: All code examples don't have comments to save space. The real code is also formatted a little different. I think I've given you the github link enough. But [here](https://github.com/flamechain/Modules.git).
 
-## 2.7. Conclusion
+## 2.7 Conclusion
 
 More sections will be made once new methods or classes get added. You can view future updates on the Main Documentation file on my github.
 
 ___
 
-<sub>Documentation Version 1.3 - Module Version 1.1.6 - Release 1.1 - Status = Public</sub>
+## 2.8 All Contents
+
+| Title |
+|-|
+| [1.0 Main Documentation](https://github.com/flamechain/Modules.git) |
+||
+| [2.0 Secondary Documentation](#2-Secondary-Documentation)
+| [2.1 Table of Contents](#2.1-Contents)
+| [2.2 Threading](#2.2-Threading) |
+| [2.2.1 threading.Thread](#2.2.1-threading.Thread)
+| [2.2.2 concurrent.futures](#2.2.2-concurrent.futures)
+| [2.3 Generating Tasks](#2.3-Generating-Tasks) |
+| [2.4 Other](#2.4-Other) |
+| [2.5 Start() Method](#2.5-start()) |
+| [2.6 End() Method](#2.6-end())
+| [2.7 Conclusion](#2.7-Conclusion) |
+| [2.8 All Contents](#28-all-contents) |
+
+___
+
+<sub>Documentation Version 1.5 - Module Version 1.1.7 - Release 1.2 - Status = Public</sub>
