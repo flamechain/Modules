@@ -1,3 +1,4 @@
+# Version 1.1.6
 import time, random, concurrent.futures, threading
 
 class Bar:
