@@ -195,6 +195,15 @@ This is a list with the bounds of the bar. The default is the pipe, but with any
 [####################] 100%
 ```
 
+## 1.6.11 title
+
+Title for the progress bar while running. The default is 'Running Tasks...', but it could be anything.
+
+```txt
+Running Tasks...
+        |██████████          |  50%
+```
+
 ___
 
 ## 1.7 Using
@@ -394,6 +403,7 @@ ___
 | [1.6.8 arrow](#168-arrow) |
 | [1.6.9 percChar](#169-percchar) |
 | [1.6.10 bracketChars](#1610-bracketchars) |
+| [1.6.11 title](#1611-title)
 | [1.7 Using](#17-using) |
 | [1.7.1 progress()](#171-progress) |
 | [1.7.2 start()](#172-start) |
