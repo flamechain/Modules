@@ -1,4 +1,4 @@
-# Version 1.1.9
+# Version 1.2.1
 import time, random, concurrent.futures, threading, termcolor
 
 class Bar:
@@ -12,15 +12,14 @@ class Bar:
 
         | Name | Optional | Description |
         |-|:-:|-|
-        | total | True | Total percentage. |
         | barLength | True | Length of bar in characters. |
-        | eta | True | Way to change the average time taken, in seconds. |
-        | totalTasks | True | Amount of tasks to get done, just for visualization. |
-        | barChar | True | The character that the bar is made of. Default = █, but # is also common. |
-        | arrow | True | Head of the bar, usally same as barChar or >. |
-        | percChar | True | Symbol for percent, made so total can be some other unit. |
-        | bracketChars | True | List with start bar and end bar bracket. [] is common, || is default. |
+        | estimatedTotalTime | True | Way to change the average time taken, in seconds. |
+        | taskCount | True | Amount of tasks to get done, just for visualization. |
+        | mainBarChar | True | The character that the bar is made of. Default = █, but # is also common. |
+        | progressPointBarChar | True | Head of the bar, usally same as barChar or >. |
+        | endPointChars | True | List with start bar and end bar bracket. [] is common, || is default. |
         | title | True | Title that shows up for the progress bar. Actaully gets prinited using the start() method. |
+        | useColor | True | Color mode on or off, default to off. |
 
         Github Link: https://github.com/flamechain/Modules
         '''
@@ -195,10 +194,8 @@ class SimulateTasks:
         
         | Name | Optional | Description |
         |-|:-:|-|
-        | eta | True | Bar() eta param, used for average time. |
-        | total | True | Total percentage of the bar. |
+        | estimatedTotalTime | True | Bar() eta param, used for average time. |
         | barLength | True | Length of the bar in characters. |
-        ||||
         | *args | True | If you want to use external task values for unit testing. |
 
         Github Link: https://github.com/flamechain/Modules

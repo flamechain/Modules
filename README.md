@@ -110,15 +110,15 @@ lb.progress(0)
 This will show a progress bar with 0% complete.
 
 ```txt
-Running Tasks...
-        |                    |   0%
+|█                   |   0%
 ```
 
-Try adjusting the 'current' param to show different percentages of completion. Then you can make a simple for loop to make the bar go up and complete.
+Try adjusting the 'current' param to show different percentages of completion. Then you can make a simple for loop to make the bar go up and complete. You can also import the time module and use time.sleep() to create a delay.
 
 ```python
 for i in range(101):
     lb.progress(i)
+    time.sleep(0.01)
 ```
 
 ### 1.4.3 Tasks and ETA
@@ -130,6 +130,7 @@ lb = loadingbar.Bar(taskCount=10)
 
 for i in range(101):
     lb.progress(i, tasksDone=i//10)
+    time.sleep(0.01)
 ```
 
 You can also put in time to let the program calculate an eta.
@@ -142,6 +143,7 @@ start = time.time()
 for i in range(101):
     currentTime = time.time() - start
     lb.progress(i, time_=currentTime)
+    time.sleep(0.01)
 ```
 
 You can also use time.sleep() to give a small delay between each iteration.
@@ -155,7 +157,14 @@ To use the start method, you can read more about it [here](#162-start), or on th
 This method is easy to use. Just call it after the progress bar is done, and it will print a finished screen. You can also enable color via the Bar() class.
 
 ```python
-lb = loadingbar.Bar(useColor=True)
+lb = loadingbar.Bar(useColor=True, taskCount=10)
+
+start = time.time()
+
+for i in range(101):
+    currentTime = time.time() - start
+    lb.progress(i, time_=currentTime, tasksDone=i//10)
+    time.sleep(0.01)
 
 lb.end()
 ```
