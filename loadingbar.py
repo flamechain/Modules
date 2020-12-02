@@ -2,7 +2,7 @@
 import time, random, concurrent.futures, threading, termcolor
 
 class Bar:
-    def __init__(self, total=100, barLength=20, eta=0, totalTasks=None, barChar='█', arrow='█', percChar='%', bracketChars=['|', '|'], title='Running Tasks...', color=False):
+    def __init__(self, barLength=20, estimatedTotalTime=0, taskCount=None, mainBarChar='█', progressPointBarChar='█', endPointChars=['|', '|'], title='Running Tasks...', useColor=False):
         '''
         ### Description
 
@@ -25,16 +25,16 @@ class Bar:
         Github Link: https://github.com/flamechain/Modules
         '''
         self.barLength = barLength
-        self.total = total
-        self.eta = eta / 10
-        self.totalTasks = totalTasks
-        self.barChar = barChar
-        self.arrow = arrow
-        self.percChar = percChar
-        self.bracketChars = bracketChars
+        self.estimatedTotalTime = estimatedTotalTime / 10
+        self.taskCount = taskCount
+        self.mainBarChar = mainBarChar
+        self.progressPointBarChar = progressPointBarChar
+        self.endPointChars = endPointChars
         self.title = title
+        self.total = 100
+        self.percChar = '%'
         
-        if color:
+        if useColor:
             self.green = 'green'
         else:
             self.green = 'white'
@@ -90,7 +90,7 @@ class Bar:
         '''
         # Generates Bar Format
         percent = float(current) * 100 / self.total
-        bar = self.barChar * int(percent/100 * self.barLength - 1) + self.arrow
+        bar = self.mainBarChar * int(percent/100 * self.barLength - 1) + self.progressPointBarChar
         spaces  = ' ' * (self.barLength - len(bar))
         space = ' ' * (5 - len(str(percent)))
 
@@ -120,27 +120,27 @@ class Bar:
             temp1 = 1
             temp2 = pastBar
             while len(bar) > pastBar:
-                string_ = '\t%s%s%s%s%s %s%d%s  [eta=%s] [tasks=%s/%s]' % (self.bracketChars[0], self.barChar * temp2, termcolor.colored(self.barChar * temp1, self.green),
-                (spaces + (" " * (len(bar)-pastBar-1))), self.bracketChars[1], space, percent, self.percChar, eta, tasksDone, self.totalTasks)
+                string_ = '\t%s%s%s%s%s %s%d%s  [eta=%s] [tasks=%s/%s]' % (self.endPointChars[0], self.mainBarChar * temp2, termcolor.colored(self.mainBarChar * temp1, self.green),
+                (spaces + (" " * (len(bar)-pastBar-1))), self.endPointChars[1], space, percent, self.percChar, eta, tasksDone, self.taskCount)
                 print(string_, end='\r')
                 pastBar += 1
                 temp1 += 1
                 time.sleep(0.05)
 
-            string_ = string_.replace(self.barChar, termcolor.colored(self.barChar, 'white'))
+            string_ = string_.replace(self.mainBarChar, termcolor.colored(self.mainBarChar, 'white'))
             print(string_, end='\r')
             return len(bar)
 
         # Prints all values it has
         else:
-            if (time_ == None) & (self.totalTasks == None):
-                print('\t%s%s%s%s %s%d%s' % (self.bracketChars[0], bar, spaces, self.bracketChars[1], space, percent, self.percChar), end='\r')
-            elif (time_ == None) & (self.totalTasks != None):
-                print('\t%s%s%s%s %s%d%s  [tasks=%s/%s]' % (self.bracketChars[0], bar, spaces, self.bracketChars[1], space, percent, self.percChar, tasksDone, self.totalTasks), end='\r')
-            elif (time != None) & (self.totalTasks == None):
-                print('\t%s%s%s%s %s%d%s  [eta=%s]' % (self.bracketChars[0], bar, spaces, self.bracketChars[1], space, percent, self.percChar, eta), end='\r')
-            elif (time != None) & (self.totalTasks != None):
-                print('\t%s%s%s%s %s%d%s  [eta=%s] [tasks=%s/%s]' % (self.bracketChars[0], bar, spaces, self.bracketChars[1], space, percent, self.percChar, eta, tasksDone, self.totalTasks), end='\r')
+            if (time_ == None) & (self.taskCount == None):
+                print('\t%s%s%s%s %s%d%s' % (self.endPointChars[0], bar, spaces, self.endPointChars[1], space, percent, self.percChar), end='\r')
+            elif (time_ == None) & (self.taskCount != None):
+                print('\t%s%s%s%s %s%d%s  [tasks=%s/%s]' % (self.endPointChars[0], bar, spaces, self.endPointChars[1], space, percent, self.percChar, tasksDone, self.taskCount), end='\r')
+            elif (time != None) & (self.taskCount == None):
+                print('\t%s%s%s%s %s%d%s  [eta=%s]' % (self.endPointChars[0], bar, spaces, self.endPointChars[1], space, percent, self.percChar, eta), end='\r')
+            elif (time != None) & (self.taskCount != None):
+                print('\t%s%s%s%s %s%d%s  [eta=%s] [tasks=%s/%s]' % (self.endPointChars[0], bar, spaces, self.endPointChars[1], space, percent, self.percChar, eta, tasksDone, self.taskCount), end='\r')
             eta_, eta2_ = eta.split(':')
 
             while int(eta_) != 0:
@@ -167,10 +167,10 @@ class Bar:
 
         Github Link: https://github.com/flamechain/Modules
         '''
-        bar  = self.barChar * self.barLength
+        bar  = self.mainBarChar * self.barLength
 
         if tasks == None:
-            total_tasks = self.totalTasks
+            total_tasks = self.taskCount
         else:
             total_tasks = tasks
 
@@ -178,14 +178,14 @@ class Bar:
 
         # Puts in all values at max
         if total_tasks == None:
-            print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}', end='')
+            print(f'\t{self.endPointChars[0]}{bar}{self.endPointChars[1]}', end='')
             print(termcolor.colored(' 100' + self.percChar, self.green))
         else:
-            print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}', end='')
+            print(f'\t{self.endPointChars[0]}{bar}{self.endPointChars[1]}', end='')
             print(termcolor.colored(' 100' + self.percChar + f'  [tasks={total_tasks}/{total_tasks}]', self.green))
 
 class SimulateTasks:
-    def __init__(self, eta=15, total=100, barLength=20, *args):
+    def __init__(self, estimatedTotalTime=15, barLength=20, *args):
         '''
         ### Description
 
@@ -204,8 +204,8 @@ class SimulateTasks:
         Github Link: https://github.com/flamechain/Modules
         '''
         self.barLength = barLength
-        self.eta = eta
-        self.total = total
+        self.estimatedTotalTime = estimatedTotalTime
+        self.total = 100
         self.simulateTasks
         self.tasks = args
         self.simulateTasks()
@@ -224,23 +224,23 @@ class SimulateTasks:
                 print(termcolor.colored('The Program will continue but there may be errors.', 'red'), end='\n\n')
                 time.sleep(2)
                 stop_threads = False
-                lb = Bar(self.total, self.barLength, self.eta)
+                lb = Bar(self.barLength, self.estimatedTotalTime)
                 with concurrent.futures.ThreadPoolExecutor() as executor:
                     future = executor.submit(lb.start, lambda: stop_threads)
                     time.sleep(1)
                     stop_threads = True
         else:
             stop_threads = False
-            lb = Bar(self.total, self.barLength, self.eta)
+            lb = Bar(self.barLength, self.estimatedTotalTime)
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 future = executor.submit(self.loadtasks)
-                if self.eta > 5:
+                if self.estimatedTotalTime > 5:
                     future2 = executor.submit(lb.start, lambda: stop_threads)
                 tasks = future.result()
                 stop_threads = True
 
         start_time = time.time()
-        lb = Bar(self.total, self.barLength, self.eta, len(tasks))
+        lb = Bar(self.barLength, self.estimatedTotalTime, len(tasks))
         current = 0
 
         def runprogress(perc, done, stop):
@@ -259,7 +259,7 @@ class SimulateTasks:
         totaltime = time.time() - start_time
         total = 0
         lb.progress(total, totaltime)
-        time.sleep(0.005*self.eta)
+        time.sleep(0.005*self.estimatedTotalTime)
         totaltime = time.time() - start_time
         lb.progress(total+1, totaltime)
 
@@ -273,7 +273,7 @@ class SimulateTasks:
             stop_threads = False
             t = threading.Thread(target=runprogress, args=(total, i, lambda: stop_threads))
             t.start()
-            time.sleep(random.randint(1, 5)*(self.eta/10))
+            time.sleep(random.randint(1, 5)*(self.estimatedTotalTime/10))
             stop_threads = True
             t.join()
 
@@ -314,11 +314,13 @@ class SimulateTasks:
             j = round(j, 1)
             tasks.append(j)
 
-            if self.eta > 5:
-                time.sleep((random.randint(25, 75)/100)*(self.eta/10))
+            if self.estimatedTotalTime > 5:
+                time.sleep((random.randint(25, 75)/100)*(self.estimatedTotalTime/10))
 
         # Returns tasks in a list
         for i in range(len(tasks)):
             tasks[i] = round(tasks[i], 1)
 
         return tasks
+
+SimulateTasks()

@@ -4,7 +4,7 @@
 
 Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
 
-### Version: 1.1.9
+### Version: 1.2.0
 
 Description: A module to make easy progress bars with lots of customizability and a built-in demo class to show whats possible.
 
@@ -15,54 +15,47 @@ ___
 - [1 LoadingBar Documentation](#1-loadingbar-documentation)
 - [1.1 Contents](#11-contents)
 - [1.2 New Changes](#12-new-changes)
-- [1.3 Future Features](#13-future-features)
-- [1.4 Installation](#14-installation)
-- [1.5 loadingbar.Bar()](#15-loadingbarbar)
-  - [1.5.1 Parameters](#151-parameters)
-  - [1.5.2 Description](#152-description)
-  - [1.5.3 total](#153-total)
-  - [1.5.4 barLength](#154-barlength)
-  - [1.5.5 eta](#155-eta)
-  - [1.5.6 totalTasks](#156-totaltasks)
-  - [1.5.7 barChar](#157-barchar)
-  - [1.5.8 arrow](#158-arrow)
-  - [1.5.9 percChar](#159-percchar)
-  - [1.5.10 bracketChars](#1510-bracketchars)
-  - [1.5.11 title](#1511-title)
-  - [1.5.12 color](#1512-color)
-- [1.6 Using](#16-using)
-  - [1.6.1 progress()](#161-progress)
-  - [1.6.2 start()](#162-start)
-  - [1.6.3 end()](#163-end)
-- [1.7 loadingbar.SimulateTasks()](#17-loadingbarsimulatetasks)
-  - [1.7.1 Parameters (SimulateTasks)](#171-parameters-simulatetasks)
-  - [1.7.2 Example](#172-example)
-- [1.8 Conclusion](#18-conclusion)
-- [1.9 Advanced Features](#19-advanced-features)
-  - [1.9.1 pastBar](#191-pastbar)
-  - [1.9.2 *args](#192-simulatetasks-args)
-- [1.10 Version Log](#110-version-log)
-- [1.11 Known Issues](#111-known-issues)
-- [1.12 Future Big Updates](#112-future-big-updates)
+- [1.3 Installation](#13-installation)
+- [1.4 loadingbar.Bar()](#14-loadingbarbar)
+  - [1.4.1 Parameters](#141-parameters)
+  - [1.4.2 Description](#142-description)
+  - [1.4.3 BarLength](#143-barlength)
+  - [1.4.4 EstimatedTotalTime](#144-estimatedtotaltime)
+  - [1.4.5 TaskCount](#145-taskcount)
+  - [1.4.6 MainBarChar](#146-mainbarchar)
+  - [1.4.7 ProgressPointBarChar](#147-progresspointbarchar)
+  - [1.4.8 EndPointChars](#148-endpointchars)
+  - [1.4.9 Title](#149-title)
+  - [1.4.10 UseColor](#1410-useColor)
+- [1.5 Using](#15-using)
+  - [1.5.1 Progress()](#151-progress)
+  - [1.5.2 Start()](#152-start)
+  - [1.5.3 End()](#153-end)
+- [1.6 Loadingbar.SimulateTasks()](#16-loadingbarsimulatetasks)
+  - [1.6.1 Parameters (SimulateTasks)](#161-parameters-simulatetasks)
+  - [1.6.2 Example](#162-example)
+- [1.7 Conclusion](#17-conclusion)
+- [1.8 Advanced Features](#18-advanced-features)
+  - [1.8.1 PastBar](#181-pastbar)
+  - [1.8.2 *args](#182-simulatetasks-args)
+- [1.9 Version Log](#19-version-log)
+- [1.10 Known Issues](#110-known-issues)
+- [1.11 Future Big Updates](#111-future-big-updates)
 - [2.0 Secondary Documentation](./MoreDocumentation.md)
 
 ___
 
 ## 1.2 New Changes
 
-- [Color](#1512-color)
-- [Bug fixes](#113-known-issues)
-- [title param to make titles](#1611-title)
-
-## 1.3 Future Features
-
-- Positioning ability
+- [Renamed all params](#141-parameters)
+- [Color](#1410-useColor)
+- [Bug fixes](#110-known-issues)
 
 > Notice: Please report any bugs directly to me and they will be acknowledged and added to this page.
 
 ___
 
-## 1.4 Installation
+## 1.3 Installation
 
 You can use this module by downloading the python file [here](https://github.com/flamechain/Modules.git).
 
@@ -84,24 +77,22 @@ This folder contains all built-in modules, so just paste the [loadingbar.py](htt
 
 ___
 
-## 1.5 loadingbar.Bar()
+## 1.4 loadingbar.Bar()
 
-### 1.5.1 Parameters
+### 1.4.1 Parameters
 
-| Param Name | Description | Optional | Default |
+| Param Name | Description | Type | Default |
 |-|-|:-:|-|
-| total | Where you put the __total percent__ or other unit that the loading bar reaches at the end. | True | 100
-| barLength | The __length, in characters__, that the bar progress bar expands. This only includes the moving part of the bar. | True | 20
-| eta | Used with the [SimulateTasks()](#17-loadingbarsimulatetasks) class, and changes overall delay on the visual. Not exact, only average. Based on seconds. | True | 10
-| totalTasks | The __total amount of tasks__ used. If not specified there will be not tasks indicator with the bar. | True | None
-| barChar | Used for the moving bar. Often '#' is used. | True | '█'
-| arrow | Used for the front character of the bar. Often '>' is used. | True | '█'
-| percChar | Used for showing what unit the total is shown in. | True | '%'
-| bracketChars | List with 2 indices, the front and last character of the bar. Often '[' and ']' is used. | True | ['&#124;', '&#124;']
-| title | What the title is for the progress bar while running. | True | 'Running Tasks...' |
-| color | If you want to have some color in on the bar. | True | False |
+| barLength | The __length, in characters__, that the bar progress bar expands. This only includes the moving part of the bar. | integer | 20
+| estimatedTotalTime | Used with the [SimulateTasks()](#16-loadingbarsimulatetasks) class, and changes overall delay on the visual. Not exact, only average. Based on seconds. | float | 10
+| taskCount | The __total amount of tasks__ used. If not specified there will be not tasks indicator with the bar. | integer | None
+| mainBarChar | Used for the moving bar. Often '#' is used. | string | '█'
+| progressPointBarChar | Used for the front character of the bar. Often '>' is used. | string | '█'
+| endPointChars | List with 2 indices, the front and last character of the bar. Often '[' and ']' is used. | list | ['&#124;', '&#124;']
+| title | What the title is for the progress bar while running. | string | 'Running Tasks...' |
+| useColor | If you want to have some color in on the bar. | boolean | False |
 
-### 1.5.2 Description
+### 1.4.2 Description
 
 This class takes advantage of the python '\r' or 'replace' ending to make a moving progress bar. Its called simply:
 
@@ -111,15 +102,7 @@ import loadingbar
 lb = loadingbar.Bar(args)
 ```
 
-### 1.5.3 total
-
-Changes the number directly after the progress bar itself. In this example its set to the default 100:
-
-```txt
-|████████████████████| 100%
-```
-
-### 1.5.4 barLength
+### 1.4.3 barLength
 
 The length if the moving status bar indicator. In this example its set to 20 using the block character:
 
@@ -127,7 +110,7 @@ The length if the moving status bar indicator. In this example its set to 20 usi
 |████████████████████|
 ```
 
-### 1.5.5 eta
+### 1.4.4 estimatedTotalTime
 
 This is not the eta that shows up on the bar during runtime, but rather an estimated time it will take to complete the bar. Only valid if its for demo purposes and no tasks running.
 
@@ -143,7 +126,7 @@ Rather for future there might be a eta param to toggle the eta status next to th
 
 In the top example the tasks haven't started so an eta can't be calculated. In the bottom example its complete, so the eta box doesn't show up on the screen.
 
-### 1.5.6 totalTasks
+### 1.4.5 taskCount
 
 This is used just for the indicator on the bar to show how many tasks there are. There is no checking if the number of tasks is equal to this value. Both examples use a value of 5:
 
@@ -157,7 +140,7 @@ This is used just for the indicator on the bar to show how many tasks there are.
 
 The top example is before the tasks have started, and the bottom example is after its done. Unlike the eta box, it stays after the tasks are finished.
 
-### 1.5.7 barChar
+### 1.4.6 mainBarChar
 
 This is simply the character used for the bar:
 
@@ -171,7 +154,7 @@ This is simply the character used for the bar:
 
 The top example uses the default block character, and the bottom one used a pound.
 
-### 1.5.8 arrow
+### 1.4.7 progressPointBarChar
 
 This is the head of the current bar status:
 
@@ -185,17 +168,7 @@ This is the head of the current bar status:
 
 The top example is the default, and the bottom uses the greater than symbol. The bottom also uses the pound as the barChar because it looks better, and would most likely be used with that more often.
 
-### 1.5.9 percChar
-
-This is the unit symbol:
-
-```txt
-|████████████████████| 100%
-```
-
-This uses the default percent symbol, but others can be used. This would most likey make sense if the total parameter is set to some other value.
-
-### 1.5.10 bracketChars
+### 1.4.8 endPointChars
 
 This is a list with the bounds of the bar. The default is the pipe, but with any other character for the bar, e.g. '#', square brackets are more commonly used:
 
@@ -203,7 +176,7 @@ This is a list with the bounds of the bar. The default is the pipe, but with any
 [####################] 100%
 ```
 
-## 1.5.11 title
+## 1.4.9 title
 
 Title for the progress bar while running. The default is 'Running Tasks...', but it could be anything.
 
@@ -212,9 +185,9 @@ Running Tasks...
         |██████████          |  50%
 ```
 
-## 1.5.12 color
+## 1.4.10 useColor
 
-Boolian used if you want to have some color. Currently color param only applies to the base class, not the [SimulateTasks()](#17-loadingbarsimulatetasks) class, hence an error message on [SimulateTasks()](#17-loadingbarsimulatetasks) is always red. Default to off because its purely visual and personal preference. This color appears when the [end()](#163-end) method is called:
+Boolian used if you want to have some color. Currently color param only applies to the base class, not the [SimulateTasks()](#16-loadingbarsimulatetasks) class, hence an error message on [SimulateTasks()](#16-loadingbarsimulatetasks) is always red. Default to off because its purely visual and personal preference. This color appears when the [end()](#153-end) method is called:
 
 <pre>
 <span style="color:green">Finished</span>
@@ -225,9 +198,9 @@ And also when the pastBar progress bar is being updated, the knew progress is gr
 
 ___
 
-## 1.6 Using
+## 1.5 Using
 
-### 1.6.1 progress()
+### 1.5.1 progress()
 
 For this you can call the class like mentioned above, and then use the progress method to change the status of the bar. This is an example using only default values, and setting the status of the bar to 100%.
 
@@ -242,10 +215,10 @@ lb.progress(100)
 |████████████████████| 100%
 ```
 
-You can also add tasks to the bar by adding thath parameter to the [Bar()](#15-loadingbarbar), and then telling the progress method how many tasks are done.
+You can also add tasks to the bar by adding thath parameter to the [Bar()](#14-loadingbarbar), and then telling the progress method how many tasks are done.
 
 ```python
-lb = loadingbar.Bar(totalTasks=10)
+lb = loadingbar.Bar(taskCount=10)
 
 for i in range(11):
     percent = i * 10
@@ -264,7 +237,7 @@ To use the eta, just specify how long its been since starting. The eta gets auto
 ```python
 import loadingbar, time
 
-lb = loadingbar.Bar(totalTasks=10)
+lb = loadingbar.Bar(taskCount=10)
 startTime = time.time()
 
 for i in range(11):
@@ -282,7 +255,7 @@ In this example, we use the time module to calculate how many seconds have passe
 |████████████        |  60%  [eta=00:04.36] [tasks=6/10]
 ```
 
-### 1.6.2 start()
+### 1.5.2 start()
 
 This method is not used often, because most people would rather not have a flashy intro, or it doesn't fit there requirments.
 
@@ -308,12 +281,12 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 This example uses the concurrent module to thread this task, so the thread can be manipulated while running. When run this program will run the 'loading tasks' prompt for 1 second, then the program will stop. This print() statement uses '\r' or 'replace' so you can take advantage by completely clearing it from the screen after finished.
 
-### 1.6.3 end()
+### 1.5.3 end()
 
 This is used much more often. What this does is it just prints the loadingbar with all values maxed out, and eta gone (if there was one).
 
 ```python
-lb = loadingbar.Bar(totalTasks=5)
+lb = loadingbar.Bar(taskCount=5)
 
 lb.end()
 ```
@@ -325,9 +298,9 @@ Finished
 
 ___
 
-## 1.7 loadingbar.SimulateTasks()
+## 1.6 loadingbar.SimulateTasks()
 
-### 1.7.1 Parameters (SimulateTasks)
+### 1.6.1 Parameters (SimulateTasks)
 
 | Param Name | Description | Optional | Default |
 |-|-|:-:|-|
@@ -335,9 +308,9 @@ ___
 | total | .Where you put the total percent or other unit that the loading bar reaches at the end. | True | 100
 | barLength | The length, in characters, that the bar progress bar expands. This only includes the moving part of the bar. | True | 20
 
-All parameters have been explained above in the [Bar()](#15-loadingbarbar) parameters section. These values go directly into that class.
+All parameters have been explained above in the [Bar()](#14-loadingbarbar) parameters section. These values go directly into that class.
 
-### 1.7.2 Example
+### 1.6.2 Example
 
 This has been shown above, but here are a couple examples of the output it could print.
 
@@ -361,15 +334,15 @@ Finshed
         |████████████████████| 100%  [tasks=5/5]
 ```
 
-## 1.8 Conclusion
+## 1.7 Conclusion
 
 This is the end of the basics for this module. All the more technical stuff goes after this point.
 
 ___
 
-## 1.9 Advanced Features
+## 1.8 Advanced Features
 
-### 1.9.1 pastBar
+### 1.8.1 pastBar
 
 This is a parameter to the progress method. All of progress's methods will we listed here.
 
@@ -395,22 +368,22 @@ past = lb.progress(100, pastBar=past)
 
 Each second it will jump up by 50 percent, but the bar will update each character with a tiny delay, so it appears to go up more slowly, instead of a sudden jump.
 
-> Note: The [__progress()__](#161-progress) method only returns when __pastBar__ is specified, thats why the past variable needed to be defined first so it could be used for the first iteration. Likewise at the end, the past var is not doing anything, just a placeholder for the return value.
+> Note: The [__progress()__](#151-progress) method only returns when __pastBar__ is specified, thats why the past variable needed to be defined first so it could be used for the first iteration. Likewise at the end, the past var is not doing anything, just a placeholder for the return value.
 
-### 1.9.2 SimulateTasks() *args
+### 1.8.2 SimulateTasks() *args
 
-This is a parameter in the [SimulateTasks()](#17-loadingbarsimulatetasks) class that lets you put in custom test-cases. Here is an example of how its used:
+This is a parameter in the [SimulateTasks()](#16-loadingbarsimulatetasks) class that lets you put in custom test-cases. Here is an example of how its used:
 
-> Note: The first 3 values aren't tasks, just there so *args gets properly evaluated.
+> Note: The first 2 values aren't tasks, just there so *args gets properly evaluated.
 
 ```python
-lb.SimulateTasks(15, 100, 20, 50, 20, 30)
+lb.SimulateTasks(15, 20, 50, 20, 30)
 ```
 
 In this example there are 3 custom tasks. The first one takes 50%, the next takes 20%, and the last takes the final 30%. If these values are greater than the total, then an error will be raised.
 
 ```python
-lb.SimulateTasks(15, 100, 20, 50, 50, 10)
+lb.SimulateTasks(15, 20, 50, 50, 10)
 ```
 
 ```txt
@@ -426,22 +399,23 @@ The Program will continue but there may be errors.</span>
 
 ___
 
-## 1.10 Version Log
+## 1.9 Version Log
 
 | Version | New Changes | Release Date |
 |-|-|:-:|
-| 1.1.9 | Added colors to [end()](#163-end) method, and [pastBar](#191-pastbar). Added color param to [Bar()](#15-loadingbarbar) class so the user has the ability to toggle color mode. | 12/02/20 |
-| 1.1.8 | [SimulateTasks()](#17-loadingbarsimulatetasks) has an *args param to accept custom pre-set tasks. Updated all doc-strings and added technical comments. | 12/01/20 |
-| 1.1.7 | [SimulateTasks()](#17-loadingbarsimulatetasks) no longer has nested functions, and doesn't have its own redundent [start()](#162-start) method. Also added title param to all methods so printing the title is built in. | 12/01/20 |
-| 1.1.6 | Added [bug log](#111-known-issues) and fixed [bugs](#111-known-issues) | 12/01/20 |
-| 1.1.5 | Bug fixes, added [version log](110-version-Log) | 12/01/20 |
+| 1.2.0 | Changed all param names to be more clear, and removed some useless ones. Overall easier to use. | 12/02/20 |
+| 1.1.9 | Added colors to [end()](#153-end) method, and [pastBar](#181-pastbar). Added color param to [Bar()](#14-loadingbarbar) class so the user has the ability to toggle color mode. | 12/02/20 |
+| 1.1.8 | [SimulateTasks()](#16-loadingbarsimulatetasks) has an *args param to accept custom pre-set tasks. Updated all doc-strings and added technical comments. | 12/01/20 |
+| 1.1.7 | [SimulateTasks()](#16-loadingbarsimulatetasks) no longer has nested functions, and doesn't have its own redundent [start()](#152-start) method. Also added title param to all methods so printing the title is built in. | 12/01/20 |
+| 1.1.6 | Added [bug log](#110-known-issues) and fixed [bugs](#110-known-issues) | 12/01/20 |
+| 1.1.5 | Bug fixes, added [version log](#19-version-Log) | 12/01/20 |
 | 1.1.4 | Bug fixes | 12/01/20 |
 | 1.1.3 | Bug fixes, added [documentation](#1-loadingbar-documentation) | 11/30/20 |
 | 1.1.2 | Bug fixes | 11/30/20 |
 | 1.1.1 | Bug fixes | 11/30/20 |
-| 1.1.0 | Added [SimulateTasks()](#17-loadingbarsimulatetasks) class to main module | 11/29/20 |
+| 1.1.0 | Added [SimulateTasks()](#16-loadingbarsimulatetasks) class to main module | 11/29/20 |
 | 1.0.2 | Bug fixes | 11/29/20 |
-| 1.0.1 | Converted [SimulateTasks()](#17-loadingbarsimulatetasks) to class form | 11/28/20 |
+| 1.0.1 | Converted [SimulateTasks()](#16-loadingbarsimulatetasks) to class form | 11/28/20 |
 | 1.0.0 | Inital Release | 11/27/20 |
 
 Pre-Release Version
@@ -460,7 +434,7 @@ Pre-Release Version
 
 ___
 
-## 1.11 Known Issues
+## 1.10 Known Issues
 
 > Note: This bug log only contains bugs going back to version 1.1.6
 
@@ -471,7 +445,7 @@ ___
 
 ___
 
-## 1.12 Future Big Updates
+## 1.11 Future Big Updates
 
 > Note: These release dates aren't offical and are only estimations
 
@@ -482,4 +456,4 @@ ___
 | 1.3.0 | Compatibility with non-terminal formats. | 12/20/20 |
 | 1.2.0 | Ability to change bar format, pre-sets, and more than 1 example class. | 12/10/20 |
 
-<sub>Documentation Version 1.16 - Module Version 1.1.9 - Release 1.4 - Status = Public</sub>
+<sub>Documentation Version 2.0 - Module Version 1.2.0 - Release 1.5 - Status = Public</sub>
