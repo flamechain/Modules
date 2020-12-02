@@ -92,16 +92,12 @@ This is a short guide to get your started with this module. The rest of the docu
 ### 1.4.1 Initilizing an instance of Bar()
 
 ```python
-import loadingbar
+import loadingbar, time
 
 lb = loadingbar.Bar()
 ```
 
 This is the default values. You can read more on the parameters further in the documentation. You should also import time for later.
-
-```python
-import time
-```
 
 ### 1.4.2 Using the progress() method
 
@@ -155,7 +151,7 @@ To use the start method, you can read more about it [here](#162-start), or on th
 To use this, call it and then cancel it after a given time. Import concurrent.futures and put it on another thread. Then stop it on the main thread. If these seems complicated its suggested you read more about this method using the links above.
 
 ```python
-import concurrent.futures
+import loadingbar, time, concurrent.futures
 
 lb = loadingbar.Bar(title='')
 
