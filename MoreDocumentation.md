@@ -1,6 +1,6 @@
 # 2 LoadingBar Documentation
 
-### Creator: FlameChain
+## Creator: FlameChain
 
 Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
 
@@ -19,7 +19,9 @@ ___
   - [2.2.1 threading.Thread](#221-threadingthread)
   - [2.2.2 concurrent.futures](#222-concurrentfutures)
 - [2.3 Generating Tasks](#23-generating-tasks)
-- [2.4 Other](#24-other)
+  - [2.3.1 Pre-Loaded Tasks](#231-pre-loaded-tasks)
+  - [2.3.2 Random Tasks](#232-random-tasks)
+- [2.4 Print Statements](#24-print-statements)
 - [2.5 Start() Method](#25-start)
 - [2.6 End() Method](#26-end)
 - [2.7 Conclusion](#27-cnclusion)
@@ -104,7 +106,42 @@ This uses the same technique to have the function stop itself. Next we will look
 
 ## 2.3 Generating Tasks
 
-This will show code examples on how the tasks were generated and why they were generated that way.
+### 2.3.1 Pre-Loaded Tasks
+
+If you use the optional *args parameter, you can classify your own tasks. See [here](./README.md#192-simulatetasks-args).
+
+If you do use this option, there is custom error-handling to make sure nothing brakes. In this example 'self.tasks' was pre-specified in the initializer to equal a list of *args. That is why it checks to see if the list is empty.
+
+```python
+if len(self.tasks) > 0:
+
+    tasks = self.tasks
+    total_ = 0
+
+    for i in tasks:
+        total_ += i
+
+    if self.total < total_:
+        return print('Value Error: Your custom tasks exceded the total (%s > %s)' % (total_, self.total))
+
+    elif self.total > total_:
+
+        print(termcolor.colored(f'Warning: Your custom tasks did not reach the total ({total_} < {self.total})', 'red'))
+
+        print(termcolor.colored('The Program will continue but there may be errors.', 'red'), end='\n\n')
+
+        time.sleep(2)
+        stop_threads = False
+        lb = Bar(self.total, self.barLength, self.eta)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future = executor.submit(lb.start, lambda: stop_threads)
+            time.sleep(1)
+            stop_threads = True
+```
+
+If you go over the total, then it stops the program. If the custom tasks go below, it prompts an error but continues. You can read a little more on this [here](./README.md#192-simulatetasks-args).
+
+### 2.3.2 Random Tasks
 
 > Note: This is all part of the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) example class to show whats possible with this module, and to prove that this module can be used in real world application.
 
@@ -181,7 +218,7 @@ for i in range(len(tasks)):
 return tasks
 ```
 
-## 2.4 Other
+## 2.4 Print Statements
 
 The only other thing in the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class that wasn't included was the print statements. It starts by using the [start()](#start) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#start).
 
@@ -239,22 +276,24 @@ The code for this method is here:
 
 ```python
 def end(self, tasks=None, title='Finished'):
-        bar  = self.barChar * self.barLength
+    bar  = self.barChar * self.barLength
 
-        if tasks == None:
-            total_tasks = self.totalTasks
-        else:
-            total_tasks = tasks
+    if tasks == None:
+        total_tasks = self.totalTasks
+    else:
+        total_tasks = tasks
 
-        print(f"\033[F{title}\t\t\t\t\t\t\t\t\t") # tabs are here just for security
+    print("\033[F" + termcolor.colored(title, self.green) + "\t\t\t\t\t\t\t\t")
 
-        if total_tasks == None:
-            print(f'\t{self.bracketChars[0]}
-            {bar}{self.bracketChars[1]} 100{self.percChar}')
-        else:
-            print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}
-            100{self.percChar}  [tasks={total_tasks}/{total_tasks}]')
+    if total_tasks == None:
+        print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}', end='')
+        print(termcolor.colored(' 100' + self.percChar, self.green))
+    else:
+        print(f'\t{self.bracketChars[0]}{bar}{self.bracketChars[1]}', end='')
+        print(termcolor.colored(' 100' + self.percChar + f'  [tasks={total_tasks}/{total_tasks}]', self.green))
 ```
+
+This method has the color integration as mentioned [here](./README.md#1512-color).
 
 > Note: All code examples here don't have comments to save space. If you want to view the full code, click [here](https://github.com/flamechain/Modules/blob/main/loadingbar.py).
 
@@ -264,4 +303,4 @@ More sections will be made once new methods or classes get added. You can view f
 
 ___
 
-<sub>Documentation Version 1.14 - Module Version 1.1.7 - Release 1.2 - Status = Public</sub>
+<sub>Documentation Version 1.16 - Module Version 1.1.9 - Release 1.4 - Status = Public</sub>
