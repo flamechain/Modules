@@ -513,6 +513,7 @@ ___
 
 | Version | New Changes | Release Date |
 |-|-|:-:|
+| 1.2.1 | Added [Quick Start Guide](#14-quick-start-guide) to documentation, revised doc-strings in loadingbar.py | 12/02/20 |
 | 1.2.0 | Changed all param names to be more clear, and removed some useless ones. Overall easier to use. | 12/02/20 |
 | 1.1.9 | Added colors to [end()](#163-end) method, and [pastBar](#191-pastbar). Added color param to [Bar()](#15-loadingbarbar) class so the user has the ability to toggle color mode. | 12/02/20 |
 | 1.1.8 | [SimulateTasks()](#17-loadingbarsimulatetasks) has an *args param to accept custom pre-set tasks. Updated all doc-strings and added technical comments. | 12/01/20 |
