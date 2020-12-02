@@ -4,7 +4,7 @@
 
 Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
 
-### Version: 1.2.1
+### Version: 1.2.2
 
 Description: A module to make easy progress bars with lots of customizability and a built-in demo class to show whats possible.
 
@@ -569,4 +569,4 @@ ___
 
 ___
 
-<sub>Documentation Version 2.3 - Module Version 1.2.1 - Release 1.7 - Status = Public</sub>
+<sub>Documentation Version 2.6 - Module Version 1.2.2 - Release 8</sub>

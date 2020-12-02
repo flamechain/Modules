@@ -4,7 +4,7 @@
 
 Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
 
-### Version: 1.2.1
+### Version: 1.2.2
 
 Description: Extra documentation with larger and more specific examples. This mainly goes over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) method words, and how you can make it from scratch.
 
@@ -298,4 +298,4 @@ This method has the color integration as mentioned [here](./README.md#1510-useco
 
 ___
 
-<sub>Documentation Version 2.3 - Module Version 1.2.1 - Release 1.7 - Status = Public</sub>
+<sub>Documentation Version 2.6 - Module Version 1.2.2 - Release 8</sub>
