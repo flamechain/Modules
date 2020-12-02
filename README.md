@@ -97,7 +97,11 @@ import loadingbar
 lb = loadingbar.Bar()
 ```
 
-This is the default values. You can read more on the parameters further in the documentation.
+This is the default values. You can read more on the parameters further in the documentation. You should also import time for later.
+
+```python
+import time
+```
 
 ### 1.4.2 Using the progress() method
 
@@ -136,8 +140,6 @@ for i in range(101):
 You can also put in time to let the program calculate an eta.
 
 ```python
-import time
-
 start = time.time()
 
 for i in range(101):
@@ -146,11 +148,27 @@ for i in range(101):
     time.sleep(0.01)
 ```
 
-You can also use time.sleep() to give a small delay between each iteration.
-
 ### 1.4.4 Using the start() method
 
-To use the start method, you can read more about it [here](#162-start), or on the second documentation [here](./MoreDocumentation.md#25-start).
+To use the start method, you can read more about it [here](#162-start), or on the second documentation [here](./MoreDocumentation.md#25-start). If you want a brief summary keep reading.
+
+To use this, call it and then cancel it after a given time. Import concurrent.futures and put it on another thread. Then stop it on the main thread. If these seems complicated its suggested you read more about this method using the links above.
+
+```python
+import concurrent.futures
+
+lb = loadingbar.Bar(title='')
+
+stop_threads = False
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    future2 = executor.submit(lb.start, lambda: stop_threads)
+
+    time.sleep(2)
+
+    stop_threads = True
+```
+
+This waits 2 seconds and then stops the method.
 
 ### 1.4.5 Using the end() method
 
@@ -522,6 +540,7 @@ ___
 
 | Version | New Changes | Release Date |
 |-|-|:-:|
+| 1.2.2 | Minor tweaks to eta calculation, fixed documentation mistakes. | 12/02/20 |
 | 1.2.1 | Added [Quick Start Guide](#14-quick-start-guide) to documentation, revised doc-strings in loadingbar.py | 12/02/20 |
 | 1.2.0 | Changed all param names to be more clear, and removed some useless ones. Overall easier to use. | 12/02/20 |
 | 1.1.9 | Added colors to [end()](#163-end) method, and [pastBar](#191-pastbar). Added color param to [Bar()](#15-loadingbarbar) class so the user has the ability to toggle color mode. | 12/02/20 |

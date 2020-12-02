@@ -1,4 +1,4 @@
-# Version 1.2.1
+# Version 1.2.2
 import time, random, concurrent.futures, threading, termcolor
 
 class Bar:
@@ -23,20 +23,34 @@ class Bar:
 
         Github Link: https://github.com/flamechain/Modules
         '''
-        self.barLength = barLength
-        self.estimatedTotalTime = estimatedTotalTime / 10
-        self.taskCount = taskCount
-        self.mainBarChar = mainBarChar
-        self.progressPointBarChar = progressPointBarChar
-        self.endPointChars = endPointChars
-        self.title = title
-        self.total = 100
-        self.percChar = '%'
+        try:
+            self.barLength = int(barLength)
+            self.estimatedTotalTime = float(estimatedTotalTime / 10)
+            if taskCount != None:
+                self.taskCount = int(taskCount)
+            else:
+                self.taskCount = taskCount
+            self.title = str(title)
+            self.total = 100
+            self.percChar = '%'
+            
+            if useColor:
+                self.green = 'green'
+            else:
+                self.green = 'white'
+        except:
+            return print('ValueError: Check parameters and try again.')
         
-        if useColor:
-            self.green = 'green'
-        else:
-            self.green = 'white'
+        okChars = ['|', '[', ']', '█', '#', '$', '^', '&', '*', '(', ')', '-', '+', '=',' !', '@', '{', '}', '/', '`', '~', '0']
+        if mainBarChar in okChars:
+            self.mainBarChar = mainBarChar
+        else: return print('ValueError: Check mainBarChar and try again.')
+        if progressPointBarChar in okChars:
+            self.progressPointBarChar = progressPointBarChar
+        else: return print('ValueError: Check progressPointBarChar and try again.')
+        if (endPointChars[0] in okChars) & (endPointChars[1] in okChars):
+            self.endPointChars = endPointChars
+        else: return print('ValueError: Check endPointChars and try again.')
 
     def start(self, stop=False, title='Loading Tasks'):
         '''
@@ -146,10 +160,10 @@ class Bar:
                 eta_ = int(eta_) - 1
                 eta2_ = float(eta2_) + 60
 
-            if (eta2_ == 0) | (self.total-current == 0):
-                time.sleep(0.01)
-            else:
-                time.sleep((float(eta2_)/(self.total-current)))
+            # if (eta2_ == 0) | (self.total-current == 0):
+            #     time.sleep(0.01)
+            # else:
+            #     time.sleep((float(eta2_)/(self.total-current)))
 
     def end(self, tasks=None, title='Finished'):
         '''
