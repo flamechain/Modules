@@ -30,7 +30,7 @@ ___
 
 This section will mainly just go over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class worked. You can always look at the code yourself [here](./loadingbar.py).
 
-> Note: The [SimulateTasks()](./README.md#17-loadingbarsimulatetasks()) class is an example class without strict formatting, so it may be more difficult to read.
+> Note: The [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class is an example class without strict formatting, so it may be more difficult to read.
 
 ### 2.2.1 threading.Thread
 
@@ -63,7 +63,7 @@ lb.progress(total+1, totaltime)
 
 This code puts a 0.005*15 delay, or 0.075 second delay between 1 percent, telling the progress method that on average it should go up 13% per second. This was found to be a good baseline.
 
-> Note: The 15 comes from the default eta parameter for the SimulateTasks() class.
+> Note: The 15 comes from the default eta parameter for the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class.
 
 The actaully threading comes in here. It runs the runprogress() method as 1 thread, and sleeps on the other, or the 'main' thread.
 
