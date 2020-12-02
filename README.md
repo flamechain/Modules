@@ -65,7 +65,7 @@ ___
 
 ## 1.3 Installation
 
-You can use this module by downloading the python file [here](https://github.com/flamechain/Modules.git).
+You can use this module by downloading the python file [here](https://github.com/flamechain/Modules/releases/tag/v1.2.2).
 
 Move the file into your python directory by going to AppData\Local\Programs\Python\
 
@@ -79,7 +79,7 @@ Then locate the current python version, is this case, 3.9.
 \Python39\Lib
 ```
 
-This folder contains all built-in modules, so just paste the [loadingbar.py](https://github.com/flamechain/Modules/blob/main/loadingbar.py) file into there.
+This folder contains all built-in modules, so just paste the [loadingbar.py](https://github.com/flamechain/Modules/releases/tag/v1.2.2) file into there.
 
 > Full Path: .\\%appdata%\\..\Local\Programs\Python\Python39\Lib\
 
