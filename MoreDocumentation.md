@@ -1,38 +1,40 @@
 # 2 LoadingBar Documentation
 
-Version: 1.1.7
+### Creator: FlameChain
 
-Description: Extra documentation with larger and more specific examples.
+Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
+
+### Version: 1.1.7
+
+Description: Extra documentation with larger and more specific examples. This mainly goes over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) method words, and how you can make it from scratch.
 
 ___
 
 ## 2.1 Contents
 
-| Title |
-|-|
-| [1.0 Main Documentation](https://github.com/flamechain/Modules.git) |
-||
-| [2.0 Secondary Documentation](#2-secondary-documentation)
-| [2.1 Table of Contents](#21-contents)
-| [2.2 Threading](#22-threading) |
-| [2.3 Generating Tasks](#23-generating-tasks) |
-| [2.4 Other](#24-other) |
-| [2.5 Start() Method](#25-start()) |
-| [2.6 End() Method](#26-end())
-| [2.7 Conclusion](#27-Conclusion) |
-| [2.8 All Contents](#28-all-contents) |
+- [1.0 Main Documentation](./README.md) |
+- [2.0 Secondary Documentation](#2-secondary-documentation)
+- [2.1 Table of Contents](#21-contents)
+- [2.2 Threading](#22-threading)
+  - [2.2.1 threading.Thread](#221-threadingthread)
+  - [2.2.2 concurrent.futures](#222-concurrentfutures)
+- [2.3 Generating Tasks](#23-generating-tasks)
+- [2.4 Other](#24-other)
+- [2.5 Start() Method](#25-start)
+- [2.6 End() Method](#26-end)
+- [2.7 Conclusion](#27-cnclusion)
 
 ___
 
 ## 2.2 Threading
 
-This section will mainly just go over how the SimulateTasks() class worked. You can always look at the code yourself [here](https://github.com/flamechain/Modules.git).
+This section will mainly just go over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class worked. You can always look at the code yourself [here](./loadingbar.py).
 
-> Note: The SimulateTasks() class is an example class without strict formatting, so it may be more difficult to read.
+> Note: The [SimulateTasks()](./README.md#17-loadingbarsimulatetasks()) class is an example class without strict formatting, so it may be more difficult to read.
 
 ### 2.2.1 threading.Thread
 
-In the SimulateTasks() class it uses the threading and concurrent modules. This section will go over just where it used the threading module to make it apear like its estimating eta without know how long the tasks will take.
+In the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class it uses the threading and concurrent modules. This section will go over just where it used the threading module to make it apear like its estimating eta without know how long the tasks will take.
 
 ```python
 def runprogress(perc, done, stop):
@@ -104,7 +106,7 @@ This uses the same technique to have the function stop itself. Next we will look
 
 This will show code examples on how the tasks were generated and why they were generated that way.
 
-> Note: This is all part of the SimulateTasks() example class to show whats possible with this module, and to prove that this module can be used in real world application.
+> Note: This is all part of the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) example class to show whats possible with this module, and to prove that this module can be used in real world application.
 
 Heres a list in order of what the the method loadtasks() is doing.
 
@@ -181,7 +183,7 @@ return tasks
 
 ## 2.4 Other
 
-The only other thing in the SimulateTasks() class that wasn't included was the print statements. It starts by using the [start()](#start()) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#start()).
+The only other thing in the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class that wasn't included was the print statements. It starts by using the [start()](#start) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#start).
 
 ```txt
 Loading Tasks /
@@ -192,7 +194,7 @@ Running Tasks...
         |███████████████     |  79%  [eta=00:07.07] [tasks=4/5]
 ```
 
-The end just calls the [end()](#end()) method, which as explained in the main documentation, is just a progress bar with all values maxed out.
+The end just calls the [end()](#end) method, which as explained in the main documentation, is just a progress bar with all values maxed out.
 
 ```txt
 Finshed
@@ -202,8 +204,6 @@ Finshed
 ## 2.5 start()
 
 This start method is very simple, and is coded like this:
-
-> Note: Again, if you want the full code go to my github page [here](https://github.com/flamechain/Modules.git).
 
 ```python
 def start(self, stop=False, title='Loading Tasks'):
@@ -225,7 +225,7 @@ def start(self, stop=False, title='Loading Tasks'):
     print(self.title)
 ```
 
-Notice that this requires to be stopped by an outside peice of code, so this is not a one-off method that you can just run, un-like [end()](#end()).
+Notice that this requires to be stopped by an outside peice of code, so this is not a one-off method that you can just run, un-like [end()](#end).
 
 ## 2.6 end()
 
@@ -256,7 +256,7 @@ def end(self, tasks=None, title='Finished'):
             100{self.percChar}  [tasks={total_tasks}/{total_tasks}]')
 ```
 
-> Note: All code examples don't have comments to save space. The real code is also formatted a little different. I think I've given you the github link enough. But [here](https://github.com/flamechain/Modules.git).
+> Note: All code examples here don't have comments to save space. If you want to view the full code, click [here](https://github.com/flamechain/Modules/blob/main/loadingbar.py).
 
 ## 2.7 Conclusion
 
@@ -264,24 +264,4 @@ More sections will be made once new methods or classes get added. You can view f
 
 ___
 
-## 2.8 All Contents
-
-| Title |
-|-|
-| [1.0 Main Documentation](https://github.com/flamechain/Modules.git) |
-||
-| [2.0 Secondary Documentation](#2-Secondary-Documentation)
-| [2.1 Table of Contents](#2.1-Contents)
-| [2.2 Threading](#2.2-Threading) |
-| [2.2.1 threading.Thread](#2.2.1-threading.Thread)
-| [2.2.2 concurrent.futures](#2.2.2-concurrent.futures)
-| [2.3 Generating Tasks](#2.3-Generating-Tasks) |
-| [2.4 Other](#2.4-Other) |
-| [2.5 Start() Method](#2.5-start()) |
-| [2.6 End() Method](#2.6-end())
-| [2.7 Conclusion](#2.7-Conclusion) |
-| [2.8 All Contents](#28-all-contents) |
-
-___
-
-<sub>Documentation Version 1.5 - Module Version 1.1.7 - Release 1.2 - Status = Public</sub>
+<sub>Documentation Version 1.14 - Module Version 1.1.7 - Release 1.2 - Status = Public</sub>
