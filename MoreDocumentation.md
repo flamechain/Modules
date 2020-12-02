@@ -4,9 +4,9 @@
 
 Github Link: [flamechain/Modules/](https://github.com/flamechain/Modules)
 
-### Version: 1.2.0
+### Version: 1.2.1
 
-Description: Extra documentation with larger and more specific examples. This mainly goes over how the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) method words, and how you can make it from scratch.
+Description: Extra documentation with larger and more specific examples. This mainly goes over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) method words, and how you can make it from scratch.
 
 ___
 
@@ -24,19 +24,18 @@ ___
 - [2.4 Print Statements](#24-print-statements)
 - [2.5 Start() Method](#25-start)
 - [2.6 End() Method](#26-end)
-- [2.7 Conclusion](#27-conclusion)
 
 ___
 
 ## 2.2 Threading
 
-This section will mainly just go over how the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) class worked. You can always look at the code yourself [here](./loadingbar.py).
+This section will mainly just go over how the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class worked. You can always look at the code yourself [here](./loadingbar.py).
 
-> Note: The [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) class is an example class without strict formatting, so it may be more difficult to read.
+> Note: The [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class is an example class without strict formatting, so it may be more difficult to read.
 
 ### 2.2.1 threading.Thread
 
-In the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) class it uses the threading and concurrent modules. This section will go over just where it used the threading module to make it apear like its estimating eta without know how long the tasks will take.
+In the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class it uses the threading and concurrent modules. This section will go over just where it used the threading module to make it apear like its estimating eta without know how long the tasks will take.
 
 ```python
 def runprogress(perc, done, stop):
@@ -65,7 +64,7 @@ lb.progress(total+1, totaltime)
 
 This code puts a 0.005*15 delay, or 0.075 second delay between 1 percent, telling the progress method that on average it should go up 13% per second. This was found to be a good baseline.
 
-> Note: The 15 comes from the default eta parameter for the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) class.
+> Note: The 15 comes from the default eta parameter for the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class.
 
 The actaully threading comes in here. It runs the runprogress() method as 1 thread, and sleeps on the other, or the 'main' thread.
 
@@ -143,7 +142,7 @@ If you go over the total, then it stops the program. If the custom tasks go belo
 
 ### 2.3.2 Random Tasks
 
-> Note: This is all part of the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) example class to show whats possible with this module, and to prove that this module can be used in real world application.
+> Note: This is all part of the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) example class to show whats possible with this module, and to prove that this module can be used in real world application.
 
 Heres a list in order of what the the method loadtasks() is doing.
 
@@ -222,7 +221,7 @@ return tasks
 
 ## 2.4 Print Statements
 
-The only other thing in the [SimulateTasks()](./README.md#16-loadingbarsimulatetasks) class that wasn't included was the print statements. It starts by using the [start()](#25-start) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#25-start).
+The only other thing in the [SimulateTasks()](./README.md#17-loadingbarsimulatetasks) class that wasn't included was the print statements. It starts by using the [start()](#25-start) method. The reason this is a method is because the '/' character next to the 'Loading Tasks' rotates in a circle. The code for this can be seen [here](#25-start).
 
 ```txt
 Loading Tasks /
@@ -293,14 +292,10 @@ def end(self, taskCount=None, title='Finished'):
         print(termcolor.colored(' 100%%' + f'  [tasks={taskCount}/{taskCount}]', self.green))
 ```
 
-This method has the color integration as mentioned [here](./README.md#1410-color).
+This method has the color integration as mentioned [here](./README.md#1510-usecolor).
 
 > Note: All code examples here don't have comments to save space. If you want to view the full code, click [here](https://github.com/flamechain/Modules/blob/main/loadingbar.py).
 
-## 2.7 Conclusion
-
-More sections will be made once new methods or classes get added. You can view future updates on the Main Documentation file on my github.
-
 ___
 
-<sub>Documentation Version 2.0 - Module Version 1.2.0 - Release 1.5 - Status = Public</sub>
+<sub>Documentation Version 2.3 - Module Version 1.2.1 - Release 1.7 - Status = Public</sub>

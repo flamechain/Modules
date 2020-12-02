@@ -322,5 +322,3 @@ class SimulateTasks:
             tasks[i] = round(tasks[i], 1)
 
         return tasks
-
-SimulateTasks()
