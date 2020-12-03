@@ -1,3 +1,5 @@
+# Note: Repository Moved to [flamechain/ConsLoadingBar](https://github.com/flamechain/ConsLoadingBar)
+
 # 1 LoadingBar Documentation
 
 ## Creator: FlameChain
